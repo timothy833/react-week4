@@ -33,6 +33,7 @@ function ProductPage () {
           );
     
           const products = res.data.products;
+        //   console.log(res);
           const filterProducts = products.map((product)=>{
             return {
               ...product,
@@ -45,7 +46,7 @@ function ProductPage () {
     
           setPageInfo(res.data.pagination);
     
-          console.log(pageInfo);
+        //   console.log(pageInfo);
     
     
         } catch (error) {

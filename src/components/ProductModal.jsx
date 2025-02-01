@@ -98,12 +98,13 @@ function ProductModal ({modalMode, tempProduct, isProductModalOpen, setIsProduct
     const createProduct = async()=>{
     try {
         await axios.post(`${BASE_URL}/v2/api/${API_PATH}/admin/product`,{
-        data: {
-            ...modalData,
-            origin_price: Number(modalData.origin_price),
-            price: Number(modalData.price),
-            is_enabled: modalData.is_enabled ? 1 : 0,          
-        },
+            data: {
+                ...modalData,
+                origin_price: Number(modalData.origin_price),
+                price: Number(modalData.price),
+                is_enabled: modalData.is_enabled ? 1 : 0,          
+                star_rating: Number(modalData.star_rating)
+            },
         });
     } catch (error) {
         alert('新增產品失敗');
@@ -118,7 +119,8 @@ function ProductModal ({modalMode, tempProduct, isProductModalOpen, setIsProduct
             ...modalData,
             origin_price: Number(modalData.origin_price),
             price: Number(modalData.price),
-            is_enabled: modalData.is_enabled ? 1 : 0,          
+            is_enabled: modalData.is_enabled ? 1 : 0,
+            star_rating: Number(modalData.star_rating)          
         },
         });
     } catch (error) {
@@ -371,6 +373,23 @@ function ProductModal ({modalMode, tempProduct, isProductModalOpen, setIsProduct
                                     <label className="form-check-label" htmlFor="isEnabled">
                                     是否啟用
                                     </label>
+                                </div>
+
+                                <div className="row g-3 mt-3 mb-3">
+                                    <div className="col-6">
+                                        <label htmlFor="star_rating" className="form-label">
+                                            評價星級
+                                        </label>
+                                        <input
+                                            value={modalData?.star_rating || ""}
+                                            onChange={handleModalInputChange}
+                                            name="star_rating"
+                                            id="star_rating"
+                                            type="number"
+                                            className="form-control"
+                                            placeholder="請輸入星級評價"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
